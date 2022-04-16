@@ -45,7 +45,7 @@ const Game: React.FC = () => {
 
   const playerStay = () => {
     const { current: deck } = deckRef;
-    if (!deck || winner()) return;
+    if (!deck) return;
 
     setFlipped(true);
     const dealerSum = sumCards(dealer);
@@ -64,7 +64,7 @@ const Game: React.FC = () => {
     const { current: deck } = deckRef;
     if (!deck || !flipped) return;
 
-    if (winner()) return;
+    if (hasBusted(me)) return;
     if (sumCards(me) > sumCards(dealer)) pullDealerCard();
   }, [me, dealer, flipped, winner]);
 
