@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import Player from "../Player/Player";
 import Controls from "../Controls/Controls";
@@ -15,7 +15,7 @@ const Game: React.FC = () => {
   const [flipped, setFlipped] = useState<boolean>(false);
 
   const hasBusted = (cards: PlayerCard[]) => sumCards(cards) > 21;
-  const winner = (): "dealer" | "player" | "tie" | undefined => {
+  const winner = useCallback((): "dealer" | "player" | "tie" | undefined => {
     if (!flipped) return;
 
     const hasPlayerBusted = hasBusted(me);
@@ -29,7 +29,7 @@ const Game: React.FC = () => {
 
     if (dealerSum === playerSum) return "tie";
     else return dealerSum > playerSum ? "dealer" : "player";
-  };
+  }, [dealer, flipped, me]);
 
   const pullPlayerCard = () => {
     const { current: deck } = deckRef;

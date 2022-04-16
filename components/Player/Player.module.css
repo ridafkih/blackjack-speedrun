@@ -5,6 +5,8 @@
   align-items: center;
   display: flex;
   gap: 2rem;
+
+  margin: 0 2rem;
 }
 
 .container:last-child {
