@@ -33,6 +33,8 @@ const Game: React.FC = () => {
 
   const pullPlayerCard = () => {
     const { current: deck } = deckRef;
+
+    if (winner() || hasBusted(me)) return;
     if (deck) setMe((previous) => [...previous, ...deck.pull()]);
   };
 
@@ -41,20 +43,15 @@ const Game: React.FC = () => {
     if (deck) setDealer((previous) => [...previous, ...deck.pull()]);
   };
 
-  const dealerStay = () => {
-    console.log("dealer stayed");
-    // ... determine winner
-  };
-
   const playerStay = () => {
     const { current: deck } = deckRef;
-    if (!deck) return;
+    if (!deck || winner()) return;
 
     setFlipped(true);
     const dealerSum = sumCards(dealer);
     const isTie = dealerSum === sumCards(me);
-    if (dealerSum >= 17 || isTie) return dealerStay();
-    else pullDealerCard();
+    if (dealerSum >= 17 || isTie) return;
+    pullDealerCard();
   };
 
   const playerHit = () => {
@@ -67,8 +64,13 @@ const Game: React.FC = () => {
     const { current: deck } = deckRef;
     if (!deck || !flipped) return;
 
+    if (winner()) return;
     if (sumCards(me) > sumCards(dealer)) pullDealerCard();
-  }, [me, dealer, flipped]);
+  }, [me, dealer, flipped, winner]);
+
+  useEffect(() => {
+    if (hasBusted(me)) setFlipped(true);
+  }, [me]);
 
   useEffect(() => {
     deckRef.current = createDeck();

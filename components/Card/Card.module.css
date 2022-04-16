@@ -9,11 +9,11 @@
   gap: 3rem;
 
   padding: 1rem;
-  background: white;
+  background: black;
 
   border-radius: 1rem;
 
-  border: 1px solid #eeeeee;
+  border: 1px solid #333;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 }
 
@@ -40,5 +40,17 @@
 
 .HEARTS,
 .DIAMONDS {
-  color: red;
+  color: #ff7d7d;
+}
+
+.SPADES,
+.CLUBS {
+  color: #999;
+}
+
+@media (max-width: 600px) {
+  .container {
+    min-width: 6rem;
+    min-height: 8rem;
+  }
 }

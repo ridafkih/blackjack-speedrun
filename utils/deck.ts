@@ -47,6 +47,11 @@ export const createDeck = () => {
   };
 };
 
+/**
+ * Sums a deck of cards accomodating for Blackjack nuances.
+ * @param cards The cards of the player.
+ * @returns The sum of the cards.
+ */
 export const sumCards = (cards: PlayerCard[]) => {
   const hasAce = !!cards.find(({ ace }) => ace);
   const sum = cards.reduce((accumulator, { value }) => accumulator + value, 0);

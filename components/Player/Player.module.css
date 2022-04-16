@@ -11,15 +11,25 @@
   flex-direction: column-reverse;
 }
 
+.container:last-child::after {
+  top: 0;
+  bottom: unset;
+  transform: translate(0, -2rem);
+}
+
+.container:first-child::after {
+  transform: translate(0, 2rem);
+}
+
 .container::after {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  right: 0;
+
   margin: auto;
 
   display: grid;
   place-items: center;
-  transform: rotate(32deg);
-  font-size: 4rem;
   font-weight: bold;
 
   color: #ff1414;
@@ -41,6 +51,8 @@
 
 .hand {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -70,7 +82,7 @@
 .dealer > .hand > *:first-child::before {
   inset: 0.5rem;
   z-index: 1;
-  background: white;
+  background: #111;
 }
 
 .dealer > .hand > *:first-child::after {
