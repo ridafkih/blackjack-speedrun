@@ -1,0 +1,44 @@
+.container {
+  min-width: 8rem;
+  min-height: 12rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+
+  gap: 3rem;
+
+  padding: 1rem;
+  background: white;
+
+  border-radius: 1rem;
+
+  border: 1px solid #eeeeee;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+}
+
+.value {
+  position: absolute;
+  font-size: 1.5rem;
+}
+
+.value:first-child {
+  top: 1rem;
+  left: 1rem;
+}
+
+.value:last-child {
+  bottom: 1rem;
+  right: 1rem;
+  text-align: right;
+}
+
+.suit {
+  margin: auto;
+  font-size: 2rem;
+}
+
+.HEARTS,
+.DIAMONDS {
+  color: red;
+}

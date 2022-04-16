@@ -1,0 +1,98 @@
+.container {
+  position: relative;
+
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+}
+
+.container:last-child {
+  flex-direction: column-reverse;
+}
+
+.container::after {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  display: grid;
+  place-items: center;
+  transform: rotate(32deg);
+  font-size: 4rem;
+  font-weight: bold;
+
+  color: #ff1414;
+}
+
+.container.busted::after {
+  content: "Busted";
+}
+
+.container.winner::after {
+  content: "Winner";
+  color: green;
+}
+
+.container.tie::after {
+  content: "Tie";
+  color: orange;
+}
+
+.hand {
+  display: flex;
+  gap: 1rem;
+}
+
+.value {
+  font-size: 1.25rem;
+}
+
+.dealer > .hand > *:first-child::before,
+.dealer > .hand > *:first-child::after {
+  content: "";
+  position: absolute;
+  margin: 0;
+  border-radius: 0.5rem;
+
+  transition: inherit;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  transform: rotateY(0);
+}
+
+.dealer.flipped > .hand > *:first-child::before,
+.dealer.flipped > .hand > *:first-child::after {
+  transform: rotateY(180deg);
+}
+
+.dealer > .hand > *:first-child::before {
+  inset: 0.5rem;
+  z-index: 1;
+  background: white;
+}
+
+.dealer > .hand > *:first-child::after {
+  border-radius: inherit;
+  inset: 0;
+  background: #222;
+}
+
+.dealer > .hand > *:first-child {
+  transition-delay: 0.165s;
+  transition: 0.25s ease;
+
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  transform: rotateY(-180deg);
+}
+
+.dealer.flipped > .hand > *:first-child {
+  transform: rotateY(0deg);
+}
+
+.dealer:not(.flipped) .value {
+  display: none;
+}
